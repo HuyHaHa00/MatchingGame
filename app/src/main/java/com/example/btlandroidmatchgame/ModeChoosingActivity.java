@@ -47,7 +47,7 @@ public class ModeChoosingActivity extends AppCompatActivity {
         });
 
         btnChude4 = findViewById(R.id.btnChude4);
-        btnChude1.setOnClickListener(view -> {
+        btnChude4.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.putExtra("chuDeChoi","hoathinh");
             intent.putExtra("TenNguoiChoi",tenNguoiChoi);
