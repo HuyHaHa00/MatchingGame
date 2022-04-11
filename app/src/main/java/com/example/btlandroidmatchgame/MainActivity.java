@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             match++;
             textviewmatch.setText("Match: " + match);
             flipTurn = 0;
+            //check thang thua o day
         }
         else{
             final Handler handler = new Handler();
