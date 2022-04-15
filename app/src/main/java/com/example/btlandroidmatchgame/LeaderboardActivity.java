@@ -11,7 +11,6 @@ import java.util.List;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
-    SQLiteDatabase bxh;
     private String tenNguoiChoi;
     private String flipCount;
 
