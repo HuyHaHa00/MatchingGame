@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -55,9 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private TextView textviewflip;
     private TextView textviewmatch;
-    private TextView textviewtime;
+    private TextView textviewname;
 
     String chuDe = new String();
+    String tenNguoiChoi = new String();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +68,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textviewflip = findViewById(R.id.text_view_flip);
         textviewmatch = findViewById(R.id.text_view_match);
-        textviewtime = findViewById(R.id.text_view_time);
-        String tenNguoiChoi = new String();
+        textviewname = findViewById(R.id.text_view_name);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tenNguoiChoi = extras.getString("tenNguoiChoi");
-
+            tenNguoiChoi = extras.getString("TenNguoiChoi");
             chuDe = extras.getString("chuDeChoi");
-            textviewtime.setText(chuDe);
+            textviewname.setText("Player: "+ tenNguoiChoi);
             //The key argument here must match that used in the other activity
         }
         gameInit();
@@ -112,10 +112,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(this, "Card nay da duoc lat roi", Toast.LENGTH_SHORT).show();
                     }
                 });
-
                 vitri++;
             }
         }
+        Button btnEnd = findViewById(R.id.btnEnd);
+        btnEnd.setOnClickListener(view -> {
+            Intent intent = new Intent(getBaseContext(), EndGame.class);
+            intent.putExtra("flipCount",flip);
+            intent.putExtra("tenNguoiChoi",tenNguoiChoi);
+            startActivity(intent);
+        });
     }
 
     private int[] layListAnh() {
@@ -137,9 +143,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkMatch() {
         if(ButtonImgRes[0]==ButtonImgRes[1]) {
             match++;
+            flip++;
             textviewmatch.setText("Match: " + match);
+            textviewflip.setText("Flip: "+ flip );
             flipTurn = 0;
-            //check thang thua o day
         }
         else{
             final Handler handler = new Handler();
@@ -157,6 +164,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Cardlist.get(CardIndex[1]).setFlipable(true);
                 }
             }, 1000);
+        }
+        if (match == 8) {
+            Intent intent = new Intent(getBaseContext(), EndGame.class);
+            intent.putExtra("flipCount",flip);
+            intent.putExtra("tenNguoiChoi",tenNguoiChoi);
+            startActivity(intent);
         }
     }
 

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BTLAndroidMatchGame">
         <activity
+            android:name=".LeaderboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EndGame"
+            android:exported="false" />
+        <activity
             android:name=".ModeChoosingActivity"
             android:exported="false" />
         <activity
@@ -23,8 +29,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>

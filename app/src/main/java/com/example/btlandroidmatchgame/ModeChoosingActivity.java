@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ModeChoosingActivity extends AppCompatActivity {
 
@@ -18,15 +19,18 @@ public class ModeChoosingActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            tenNguoiChoi = extras.getString("tenNguoiChoi");
+            tenNguoiChoi = extras.getString("name");
             //The key argument here must match that used in the other activity
         }
+        TextView txtview = findViewById(R.id.textView3);
+        txtview.setText(tenNguoiChoi);
+
 
         btnChude1 = findViewById(R.id.btnChude1);
         btnChude1.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.putExtra("chuDeChoi","hoaqua");
-            intent.putExtra("TenNguoiChoi",tenNguoiChoi);
+            intent.putExtra("TenNguoiChoi", tenNguoiChoi);
             startActivity(intent);
         });
 
@@ -42,7 +46,7 @@ public class ModeChoosingActivity extends AppCompatActivity {
         btnChude3.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.putExtra("chuDeChoi","dongvat");
-            intent.putExtra("TenNguoiChoi",tenNguoiChoi);
+            intent.putExtra("tenNguoiChoi",tenNguoiChoi);
             startActivity(intent);
         });
 
