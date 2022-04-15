@@ -12,7 +12,6 @@ public class card {
         this.flipable = flipable;
     }
 
-
     public int getCard_img_res() {
         return card_img_res;
     }
