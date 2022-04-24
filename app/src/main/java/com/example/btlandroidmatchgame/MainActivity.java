@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private int flipTurn = 0; // lượt chơi
 
-    private int flip = 0;
+    int flip = 0;
     private int match = 0;
 
     private TextView textviewflip;
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnEnd = findViewById(R.id.btnEnd);
         btnEnd.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), EndGame.class);
-            intent.putExtra("flipCount",flip);
+            intent.putExtra("flipCount",String.valueOf(flip));
             intent.putExtra("tenNguoiChoi",tenNguoiChoi);
             startActivity(intent);
         });
@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (match == 8) {
             Intent intent = new Intent(getBaseContext(), EndGame.class);
-            intent.putExtra("flipCount",flip);
+            intent.putExtra("flipCount",String.valueOf(flip));
             intent.putExtra("tenNguoiChoi",tenNguoiChoi);
             startActivity(intent);
         }

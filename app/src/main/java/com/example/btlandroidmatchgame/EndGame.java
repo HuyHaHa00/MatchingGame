@@ -23,6 +23,7 @@ public class EndGame extends AppCompatActivity {
             flipCount = extras.getString("flipCount");
             //The key argument here must match that used in the other activity
         }
+
         TextView textviewflip = findViewById((R.id.txtFlip));
         textviewflip.setText(flipCount);
         TextView textviewName = findViewById(R.id.txtTen);
@@ -30,7 +31,7 @@ public class EndGame extends AppCompatActivity {
 
         Button btnChoiLai = findViewById(R.id.btnChoiLai);
         btnChoiLai.setOnClickListener(view -> {
-            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+            Intent intent = new Intent(getBaseContext(), ModeChoosingActivity.class);
             intent.putExtra("tenNguoiChoi",tenNguoiChoi);
             startActivity(intent);
         });
@@ -39,6 +40,7 @@ public class EndGame extends AppCompatActivity {
         btnBXH.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), LeaderboardActivity.class);//fix
             intent.putExtra("tenNguoiChoi",tenNguoiChoi);
+            intent.putExtra("flipCount",flipCount);
             startActivity(intent);
         });
 

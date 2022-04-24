@@ -17,7 +17,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE BXH (ID INTERGER PRIMARY KEY AUTOINCREMENT, PLAYERNAME TEXT, FLIPCOUNT STRING)";
+        String createTableStatement = "CREATE TABLE BXH (ID INTEGER PRIMARY KEY AUTOINCREMENT, PLAYERNAME TEXT, FLIPCOUNT STRING)";
         db.execSQL(createTableStatement);
     }
 
@@ -46,8 +46,8 @@ public class DBHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()) {
             //loop qua ket qua
             do {
-                String name = cursor.getString(0);
-                String flipCount = cursor.getString(1);
+                String name = cursor.getString(1);
+                String flipCount = cursor.getString(2);
 
                 KetQua kq = new KetQua(name,flipCount);
                 returnList.add(kq);
