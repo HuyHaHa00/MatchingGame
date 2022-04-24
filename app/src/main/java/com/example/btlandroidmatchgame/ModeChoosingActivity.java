@@ -46,7 +46,7 @@ public class ModeChoosingActivity extends AppCompatActivity {
         btnChude3.setOnClickListener(view -> {
             Intent intent = new Intent(getBaseContext(), MainActivity.class);
             intent.putExtra("chuDeChoi","dongvat");
-            intent.putExtra("tenNguoiChoi",tenNguoiChoi);
+            intent.putExtra("TenNguoiChoi",tenNguoiChoi);
             startActivity(intent);
         });
 
