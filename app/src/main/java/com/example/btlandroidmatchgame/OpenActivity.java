@@ -3,6 +3,7 @@ package com.example.btlandroidmatchgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,6 @@ public class OpenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.name_screen);
-
         btnTiepTuc = findViewById(R.id.btnTiepTuc);
 
         EditText editText2 = (EditText) findViewById(R.id.edtNhapTen);

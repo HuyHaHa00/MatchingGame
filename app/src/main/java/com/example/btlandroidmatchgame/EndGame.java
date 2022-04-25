@@ -44,10 +44,5 @@ public class EndGame extends AppCompatActivity {
             startActivity(intent);
         });
 
-        Button btnExit = findViewById(R.id.btnExit);
-        btnExit.setOnClickListener(view -> {
-            finish();
-            System.exit(0);
-        });
     }
 }

@@ -3,8 +3,11 @@ package com.example.btlandroidmatchgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,6 +31,15 @@ public class LeaderboardActivity extends AppCompatActivity {
             //The key argument here must match that used in the other activity
         }
 
+        Button btnVeOpen = findViewById(R.id.btnVeOpen);
+        btnVeOpen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),OpenActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView txtbxh = findViewById(R.id.txtbxh);
         DBHelper dbHelper = new DBHelper(this);
         KetQua kq = new KetQua(tenNguoiChoi,flipCount);
@@ -38,10 +50,8 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         for(KetQua ketQua : listKQ)
         {
-              txtbxh.setText(txtbxh.getText() + ketQua.getName() + "........"+ ketQua.getFlipCount() + "\n");
+              txtbxh.setText(txtbxh.getText() + ketQua.getName() + "........................."+ ketQua.getFlipCount() + "\n");
         }
 
     }
-
-
 }

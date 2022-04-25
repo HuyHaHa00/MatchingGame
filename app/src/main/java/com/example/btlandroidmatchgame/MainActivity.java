@@ -5,8 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     String chuDe = new String();
     String tenNguoiChoi = new String();
+    private MediaPlayer mp;
+    private long mLastClickTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textviewflip = findViewById(R.id.text_view_flip);
         textviewmatch = findViewById(R.id.text_view_match);
         textviewname = findViewById(R.id.text_view_name);
+
+        mp = MediaPlayer.create(this, R.raw.background_song);
+        mp.start();
+        mp.setLooping(true);
+        
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -94,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 imageButtons[i][j].setTag(vitri);
 
                 imageButtons[i][j].setOnClickListener(view -> {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
+
                     CardIndex[flipTurn] = (int) view.getTag();//lay duoc tag cua button (lay duoc index cua card trong cardlist)
                     if(Cardlist.get(CardIndex[flipTurn]).isFlipable()){
                         ButtonImgRes[flipTurn] = Cardlist.get(CardIndex[flipTurn]).card_img_res;
@@ -192,5 +206,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
 
+    }
+
+    public void onPause() {
+        super.onPause();
+        mp.stop();
     }
 }
